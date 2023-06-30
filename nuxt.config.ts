@@ -14,15 +14,13 @@ export default defineNuxtConfig({
         code: 'en',
         iso: 'en',
         name: 'English',
-        file: 'en.json'
-        // file: 'en.yml,'
+        file: 'en.yml',
       },
       {
         code: 'es',
         iso: 'es',
         name: 'Español',
-        file: 'es.json'
-        // file: 'es.yml'
+        file: 'es.yml'
       },
     ]
   }

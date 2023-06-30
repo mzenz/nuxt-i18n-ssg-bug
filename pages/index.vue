@@ -1,21 +1,31 @@
 <template>
-  <h1>Home</h1>
-  <p>{{ t('welcome') }}</p>
-  <h2>{{ t('flag') }}</h2>
-  <button @click="onLanguageChange">{{ locale }}</button>
+  <h1>{{ t('welcome') }}</h1>
+  <h2>{{ `${locale} ${t('flag')}` }}</h2>
+  <button @click="cycleLocale">{{ t('nextLocale') }}</button>
+  <br />
+  <label>{{ t('language') }}</label>
+  <select name="locales" @change="onLocaleSelected">
+    <option v-for="l in availableLocales" :value="l">{{l}}</option>
+  </select>
+
 </template>
 
 <script setup>
-import { useI18n } from '#imports'
+import { useI18n, useHead } from '#imports'
 
 const { locale, t, availableLocales } = useI18n()
 
-const onLanguageChange = () => {
-  cycleLocale()
-}
+const onLocaleSelected = (e) => { locale.value = e.target.value }
 
 const cycleLocale = () => {
   const locales = availableLocales
   locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
 }
+
+const title = computed(() => t('welcome'))
+
+useHead({
+  htmlAttrs: { lang: locale },
+  title,
+})
 </script>
