@@ -8,6 +8,9 @@
     <option v-for="l in availableLocales" :value="l">{{l}}</option>
   </select>
 
+  <br />
+
+  <span>{{ t('englishOnly') }}</span>
 </template>
 
 <script setup>
